@@ -14,3 +14,4 @@
 | compact | boolean | If true, the style for the window's title bar will have less spacing |
 | hideClose | boolean | If true, no close button will be added to the window |
 | hideMinimize | boolean | If true, no minimize button will be added to the window |
+| zIndex | string | Override the zIndex, which will be assigned to the window (default: 1) |

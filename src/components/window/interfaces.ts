@@ -9,6 +9,7 @@ export interface IWindowModalOptions extends Partial<IWindowBarOptions> {
     size?: IPoint;
     resizable?: boolean;
     movable?: boolean;
+    zIndex?: string;
 }
 
 export interface IWindowBarOptions {

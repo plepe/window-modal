@@ -68,6 +68,11 @@ export class WindowModal extends Component {
         this.windowBar.setTitle(title);
         this._title = title;
     }
+    public get zIndex() { return this._zIndex; }
+    public set zIndex(zIndex: string) {
+        this._zIndex = zIndex;
+        this.updateElement();
+    }
 
     public set icon(icon: IWindowIcon) {
         this.windowBar.setIcon(icon);
@@ -98,6 +103,7 @@ export class WindowModal extends Component {
     private _resizable: boolean = true;
     private _movable: boolean = true;
     private _focused: boolean = true;
+    private _zIndex: string = "1";
 
     private _mousePos: IPoint = Point.zero;
 
@@ -147,6 +153,11 @@ export class WindowModal extends Component {
         this.movable = true;
         if (options.movable === false) {
             this.movable = false;
+        }
+
+        this.zIndex = "1";
+        if (options.zIndex) {
+            this.zIndex = options.zIndex;
         }
 
         const { elementSelector } = options;
@@ -268,12 +279,12 @@ export class WindowModal extends Component {
     }
 
     public updateElement() {
-        const { pos, size, minimized } = this;
+        const { pos, size, minimized, zIndex } = this;
         if (minimized) {
             return;
         }
         this.setStyle({
-            zIndex: this.focused ? "1" : "0",
+            zIndex: this.focused ? zIndex : "0",
             left: addPx(pos.x), top: addPx(pos.y),
             width: addPx(size.x), height: addPx(size.y),
         });
